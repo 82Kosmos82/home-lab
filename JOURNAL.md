@@ -3,6 +3,28 @@
 Хронологічні записи прогресу. Найновіші — зверху.
 
 ---
+## 2026-05-15 — День 0: підготовка хоста і репозиторію
+**Зроблено сьогодні:**
+- Реструктуризовано репозиторій: у кожному етапі тепер підпапки `scripts/`, `configs/`, `docs/`, `screenshots/` і `README.md`
+- Скрипт `Initialize-LabRepoStructure.ps1` доопрацьовано для нової    структури, закомічено в `00-preparation/scripts/`
+- Активовано Hyper-V через `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All -All`, 
+- Налаштовано шляхи зберігання VM на окремий диск: `D:\Hyper-V\VMs` і `D:\Hyper-V\VirtualDisks` через `Set-VMHost`. Окрема папка `D:\Hyper-V\ISO\` для образів.
+- Створено Virtual Switch: `Lab-External` (External, на фізичному Ethernet з AllowManagementOS) і `Lab-Domain` (Private, для майбутньої внутрішньої мережі лабораторії)
+- Скрипти `Set-HyperVDefaults.ps1` і `New-LabSwitches.ps1` збережено в `00-preparation/scripts/`.
+- Поставлено на завантаження ISO: Windows Server 2022 Eval (англомовна), Ubuntu Server 26.04 LTS
+- Продовжував вчитись писати скрипти
+
+
+
+**Виявлені нюанси:**
+- Помітив що домашня мережа в `192.168.50.0/24` — для лабораторної мережі (LAN OPNsense) треба обрати іншу підмережу, щоб уникнути конфлікту. Думаю про `172.16.50.0/24` для Етапу 2.
+
+
+**Що далі:**
+- Дочекатися завантаження ISO
+- Старт Етапу 1: створення VM DC01, установка Windows Server, підняття домену 
+
+
 
 ## 2026-05-14 — День 0: підготовка хоста і репозиторію
 
@@ -11,7 +33,7 @@
 - Ноутбук: Acer Nitro AN517-41 (буде клієнтом у домені пізніше)
 
 **Зроблено сьогодні:**
-- Чиста установка Windows 11 Pro на ПК
+- Чиста установка Windows 11 Pro на     ПК
 - Зайшов через майкрософт аккаунт. вимкнув бітлокер
 - Створено локальний адмін-акаунт `kosmos`, перехід на нього
 - Встановлено базовий софт через winget: Git, VS Code, Windows Terminal, PowerShell 7, GitHub CLI, Everything, WinDirStat, 7-Zip, Draw.io

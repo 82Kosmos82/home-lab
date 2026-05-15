@@ -15,7 +15,7 @@
 
 | # | Етап | Статус | Ключові теми |
 |---|------|--------|--------------|
-| 0 | [Підготовка](00-preparation/) | 🟡 В роботі | Hyper-V, Git, репозиторій |
+| 0 | [Підготовка](00-preparation/) | ✅ В роботі | Hyper-V, Git, репозиторій |
 | 1 | [Active Directory](01-active-directory/) | ⏳ Заплановано | AD DS, GPO, DNS, DHCP, PowerShell |
 | 2 | [Мережа](02-network/) | ⏳ Заплановано | OPNsense, VLAN, WireGuard, фільтрація |
 | 3 | [Linux + автоматизація](03-linux-automation/) | ⏳ Заплановано | Docker, Ansible |
