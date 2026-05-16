@@ -1,0 +1,32 @@
+New-VM — створити саму VM
+
+-Name — ім'я
+-MemoryStartupBytes — стартова пам'ять (з суфіксами: 4GB, 2GB)
+-NewVHDPath — шлях для нового VHD-файлу
+-NewVHDSizeBytes — розмір (наприклад 60GB)
+-Generation — 2
+-SwitchName — назва Virtual Switch
+
+Set-VMProcessor — налаштувати CPU
+
+-VMName
+-Count — кількість vCPU
+
+Add-VMDvdDrive — додати DVD-привід і прикріпити ISO
+
+-VMName
+-Path — шлях до ISO файлу
+
+Опційно — Set-VMFirmware — змінити порядок завантаження, щоб DVD був перший
+
+-VMName
+-FirstBootDevice — обʼєкт DVD-приводу
+
+# Якщо VM запущена — спершу зупинити
+Stop-VM -Name "test-vm" -Force
+
+# Видалити саму VM (конфіги залишаться без диска)
+Remove-VM -Name "test-vm" -Force
+
+# Видалити VHD-файл вручну
+Remove-Item "D:\Hyper-V\VirtualDisks\test-vm.vhdx" -Force
