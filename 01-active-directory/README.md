@@ -13,8 +13,8 @@
 ## Виконано
 - [x] Створено VM DC01 (4 GB RAM, 2 vCPU, 60 GB, Gen 2, Lab-Domain switch)
 - [x] Встановлено Windows Server 2022 Datacenter (Desktop Experience), evaluation
-- [ ] Перейменовано хост на DC01, налаштовано статичний IP
-- [ ] Встановлено роль AD DS, проведено promotion лісу lab.internal
+- [x] Перейменовано хост на DC01, налаштовано статичний IP
+- [x] Встановлено роль AD DS, проведено promotion лісу lab.internal
 - [ ] OU-структура (Users, Computers, Groups, Servers, ServiceAccounts)
 - [ ] Тестові користувачі і групи (вручну)
 - [ ] PowerShell-скрипт масового створення юзерів з CSV
@@ -28,6 +28,7 @@
 | `команди для VM.txt` | Шпаргалка по командам для робочи з VM |
 | `DC01_config.png` | Конфіг DC01|
 | `web_architecture.txt` | план по маршрутизації|
+| `DC01_ipconfig.png` | налаштування мережі на DC01|
 
 ## Нюанси
 
