@@ -187,3 +187,17 @@ Get-VMSnapshot -VMName DC01
 
 **Перевірка:**
 - `Get-VMSnapshot -VMName DC01` → snapshot з назвою "AD-DS-promoted-clean"
+
+
+## 2026-05-18 — Створення структури домена
+New-ADOrganizationalUnit команда для додавання нової OU
+**Параметри детально:**
+- -Name -- ім'я підрівня
+- -Path -- шлях в форматі DN. читається зліва направо.
+**Приклад**
+New-ADOrganizationalUnit -Name "MemberServers" -Path "OU=Servers,OU=LAB,$domainDN"
+
+створює Member-Servers OU вісередині lab.internal\LAB\Servers
+
+
+---

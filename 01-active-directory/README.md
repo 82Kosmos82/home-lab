@@ -15,8 +15,8 @@
 - [x] Встановлено Windows Server 2022 Datacenter (Desktop Experience), evaluation
 - [x] Перейменовано хост на DC01, налаштовано статичний IP
 - [x] Встановлено роль AD DS, проведено promotion лісу lab.internal
-- [ ] OU-структура (Users, Computers, Groups, Servers, ServiceAccounts)
-- [ ] Тестові користувачі і групи (вручну)
+- [x] OU-структура (Users, Computers, Groups, Servers, ServiceAccounts)
+- [x] Тестові користувачі і групи (вручну)
 - [ ] PowerShell-скрипт масового створення юзерів з CSV
 - [ ] Перші GPO: політика паролів, Folder Redirection, обмеження для категорій юзерів
 - [ ] Тестова Windows-клієнтська VM, ввід у домен, перевірка GPO
@@ -29,6 +29,9 @@
 | `DC01_config.png` | Конфіг DC01|
 | `web_architecture.txt` | план по маршрутизації|
 | `DC01_ipconfig.png` | налаштування мережі на DC01|
+| `ADOrg.ps1` | створення OU-структури|
+| `OU-structure.png` | OU-структура скриншотом на поточний момент|
+| `user-example.png` | створення юзера через GUI|
 
 ## Нюанси
 
