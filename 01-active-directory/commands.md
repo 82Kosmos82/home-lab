@@ -201,3 +201,33 @@ New-ADOrganizationalUnit -Name "MemberServers" -Path "OU=Servers,OU=LAB,$domainD
 
 
 ---
+
+
+## 2026-05-31 — написи в cli
+`Write-Host "TEXT" -ForegroundColor Green`
+`Write-Warning "TEXT"`
+перша  команда робить просто  зелений текст в cli. можна обирати колір тексту через параметр -ForegroundColor
+друга попередження. попередження завжди виділяються червоним
+
+
+## 2026-05-31 — додавання юзера в ад
+`New-ADUser -Name $name `
+        `-SamAccountName "$n.$($u.LastName.ToLower())" `
+        `-Path $Map `
+        `-PasswordNeverExpires $true `
+       ` -AccountPassword $p `
+       ` -GivenName "$($u.FirstName)" `
+       ` -Surname "$($u.LastName)" `
+       ` -Enabled $true `
+       ` -UserPrincipalName "$n.$($u.LastName.ToLower())@lab.internal"`
+
+можна додавати юзерів через cli
+по параметрам: 
+`-SamAccountName` --логін аккаунта
+`-Path` --де в OU творити
+`-PasswordNeverExpires` --чи потрібно міняти пароль з часом
+`-AccountPassword` --пароль аккаунта початковий
+`-GivenName` --ім'я
+`-Surname` --Призвіще
+`-Enabled` --чи вмикнений аккаунт
+`-UserPrincipalName` --можливість зайти в аккаунт за допомогою назви домену
