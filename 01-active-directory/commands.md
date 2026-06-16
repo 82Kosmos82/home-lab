@@ -231,3 +231,12 @@ New-ADOrganizationalUnit -Name "MemberServers" -Path "OU=Servers,OU=LAB,$domainD
 `-Surname` --Призвіще
 `-Enabled` --чи вмикнений аккаунт
 `-UserPrincipalName` --можливість зайти в аккаунт за допомогою назви домену
+
+
+Set-VMKeyProtector -VMName $VMName -NewLocalKeyProtector
+
+
+## 2026-06-16 — введення пк в домен
+Add-Computer -DomainName "lab.internal" -Credential (Get-Credential) -Restart
+## 2026-06-16 — явне задання днс сервера
+Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses 172.16.50.10

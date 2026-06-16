@@ -30,3 +30,6 @@ Remove-VM -Name "test-vm" -Force
 
 # Видалити VHD-файл вручну
 Remove-Item "D:\Hyper-V\VirtualDisks\test-vm.vhdx" -Force
+# вмикнення tmp 2.0 . перша команда робить ключ шифрування. інша вмикає tpm
+Set-VMKeyProtector -VMName $VMName -NewLocalKeyProtector
+Enable-VMTPM -VMName $VMName
