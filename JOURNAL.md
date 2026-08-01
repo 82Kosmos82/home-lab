@@ -1,6 +1,31 @@
 # Журнал лабораторії
 
 Хронологічні записи прогресу. Найновіші — зверху.
+## 2026-08-01 
+**Зроблено сьогодні:**
+зайнявся двома темами: наданням rdp доступу та політиками для ПК
+
+rdp надавав трьома способами. вручну мишкою, скриптом на пк, і через політики. надавали доступ до папки rdp-users в домені LAB. всі три способи спрацювали. політика накладається на пк, на відміну від того, що я робив раніше
+
+Прив'язка: OU=Workstations,OU=Computers,OU=LAB,DC=lab,DC=internal
+
+- Local Group: Remote Desktop Users (built-in) (Computer Configuration → Preferences → Control Panel Settings → Local Users and Groups)
+  - Action: Update
+  - Member: LAB\RDP-Users → Add to this group
+
+політики на пк. накладаються, як зрозуміло, на пк. поставив 15хвилинний блок пк через інактив. вимкнення гостьового аккаунта, завжди вмикнений віндовс дефендер і логування логінів/логаутів з цього пк. юзав на workstations. все протестував окрім 15хвилин. але політика точно застосувалась.
+
+Прив'язка: OU=Workstations,OU=Computers,OU=LAB,DC=lab,DC=internal
+
+- Interactive logon: Machine inactivity limit (Computer Configuration → Policies → Windows Settings → Security Settings → Local Policies → Security Options) — 900 сек (15 хв)
+- Accounts: Guest account status (Computer Configuration → Policies → Windows Settings → Security Settings → Local Policies → Security Options) — Disabled
+- Windows Defender Firewall → Domain Profile → Firewall state (Computer Configuration → Policies → Windows Settings → Security Settings → Windows Defender Firewall with Advanced Security) — On
+- Audit Logon (Computer Configuration → Policies → Windows Settings → Security Settings → Advanced Audit Policy Configuration → Audit Policies → Logon/Logoff) — Success and Failure
+- Audit Logoff (Computer Configuration → Policies → Windows Settings → Security Settings → Advanced Audit Policy Configuration → Audit Policies → Logon/Logoff) — Success
+
+
+**Що далі:**
+хочу спробувати підняти ще один сервер в домені. зробити з нього файлову шару
 
 ## 2026-07-31 
 **Зроблено сьогодні:**

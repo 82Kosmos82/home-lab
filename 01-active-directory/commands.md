@@ -240,3 +240,5 @@ Set-VMKeyProtector -VMName $VMName -NewLocalKeyProtector
 Add-Computer -DomainName "lab.internal" -Credential (Get-Credential) -Restart
 ## 2026-06-16 — явне задання днс сервера
 Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses 172.16.50.10
+## 2026-08-01 — надання групі юзерів доступу до рдп
+Add-LocalGroupMember -Group "Remote Desktop Users" -Member "LAB\RDP-Users"
