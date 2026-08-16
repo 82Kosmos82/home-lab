@@ -237,8 +237,33 @@ Set-VMKeyProtector -VMName $VMName -NewLocalKeyProtector
 
 
 ## 2026-06-16 — введення пк в домен
-Add-Computer -DomainName "lab.internal" -Credential (Get-Credential) -Restart
+`Add-Computer -DomainName "lab.internal" -Credential (Get-Credential) -Restart`
 ## 2026-06-16 — явне задання днс сервера
-Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses 172.16.50.10
+`Set-DnsClientServerAddress -InterfaceIndex 12 -ServerAddresses 172.16.50.10`
 ## 2026-08-01 — надання групі юзерів доступу до рдп
-Add-LocalGroupMember -Group "Remote Desktop Users" -Member "LAB\RDP-Users"
+`Add-LocalGroupMember -Group "Remote Desktop Users" -Member "LAB\RDP-Users"`
+## 2026-08-16 — створення  нового вітруального доиску
+`New-VHD -Path "D:\Hyper-V\VirtualDisks\FILE01-Data.vhdx" -SizeBytes 40GB -Dynamic`
+`-Path` — куди фізично покласти файл на хості. Іменування FILE01-Data.vhdx описове (VM + призначення)
+`-SizeBytes 40GB` — максимальний розмір диска
+`-Dynamic` — динамічний, тобто файл росте по мірі заповнення (займає тільки те, що використовується)
+
+## 2026-08-16 — ініціалізація диску на  VM
+`Initialize-Disk -Number 1 -PartitionStyle GPT`
+`Number 1` — номер нашого нового диска (перевірте по виводу Get-Disk)
+`-PartitionStyle GPT` — новий стандарт, підтримує диски більше 2 TB, потрібен для UEFI (Gen 2 VM). Альтернатива MBR — старий стандарт, тільки для legacy.
+
+## 2026-08-16 — створення розділу і форматування
+`New-Partition -DiskNumber 1 -UseMaximumSize -DriveLetter D | Format-Volume -FileSystem NTFS -NewFileSystemLabel "Data" -Confirm:$false`
+`New-Partition -DiskNumber 1` — створити розділ на диску 1
+`-UseMaximumSize` — на весь доступний простір диска
+`-DriveLetter D` — присвоїти літеру D:
+`| Format-Volume` — pipe в форматування
+`-FileSystem NTFS` — файлова система (для Windows-шар — обов'язково NTFS)
+`-NewFileSystemLabel "Data"` — мітка тому (буде видно як "Data (D:)")
+`-Confirm:$false` — без запитання підтвердження
+
+## 2026-08-16 — надання серверу ролі fileserver
+`Install-WindowsFeature -Name FS-FileServer -IncludeManagementTools`
+`FS-FileServer` — базова роль File Server
+`-IncludeManagementTools` — установити консольні інструменти (Share and Storage Management, FSRM якщо буде потрібно)
