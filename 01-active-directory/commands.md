@@ -267,3 +267,79 @@ Set-VMKeyProtector -VMName $VMName -NewLocalKeyProtector
 `Install-WindowsFeature -Name FS-FileServer -IncludeManagementTools`
 `FS-FileServer` — базова роль File Server
 `-IncludeManagementTools` — установити консольні інструменти (Share and Storage Management, FSRM якщо буде потрібно)
+
+## 2026-08-17 — робота з правами 
+Читання і запис Access Control List папки.
+`$acl = Get-Acl E:\Shares\Marketing`
+`Set-Acl -Path E:\Shares\Marketing -AclObject $acl`
+
+`Get-Acl` повертає об'єкт з властивостями:
+- `Access` — колекція правил (ACE — Access Control Entries)
+- `Owner` — власник об'єкта
+- `Group` — primary group (legacy)
+- `AreAccessRulesProtected` — чи розірвано успадкування
+
+`Set-Acl` записує змінений об'єкт назад на файлову систему.
+
+
+Розрив успадкування
+
+$acl.SetAccessRuleProtection($true, $true)
+Два параметри:
+
+- 1-й: `$true` — розірвати успадкування з батьківської папки
+- 2-й: `$true` — конвертувати успадковані права в explicit (аналог "Convert" у GUI)
+
+Альтернатива `$false` для другого параметра — прибрати всі успадковані права (небезпечно, можна себе заблокувати).
+
+Створення нового правила
+
+```powershell
+$rule = New-Object System.Security.AccessControl.FileSystemAccessRule -ArgumentList `
+    "LAB\Sales-Users",           # хто (identity)
+    "Modify",                     # які права (FileSystemRights)
+    "ContainerInherit,ObjectInherit",  # inheritance для підпапок і файлів
+    "None",                       # propagation flags
+    "Allow"                       # тип (Allow/Deny)
+$acl.SetAccessRule($rule)
+```
+**FileSystemRights** — enum: `Read`, `Write`, `ReadAndExecute`, `Modify`, `FullControl`, `Delete`, тощо.
+
+**Inheritance flags:**
+- `ContainerInherit` — застосовувати до підпапок
+- `ObjectInherit` — застосовувати до файлів
+- `ContainerInherit,ObjectInherit` — і те, і інше (стандарт для файлових шар)
+- `None` — тільки поточна папка
+
+**Propagation flags** (майже завжди `None`):
+- `None` — стандартна поведінка
+- `InheritOnly` — застосовувати тільки до дочірніх, не до самої папки
+- `NoPropagateInherit` — не наслідується далі
+
+**`-ArgumentList`** — розпаковує масив у окремі аргументи конструктора. Без цього `New-Object` не приймає масив як один блок.
+
+### Видалення правил
+
+```powershell
+# Знайти і прибрати правило для конкретної групи
+$rulesToRemove = $acl.Access | Where-Object {$_.IdentityReference -eq "BUILTIN\Users"}
+foreach ($rule in $rulesToRemove)
+{
+    $acl.RemoveAccessRule($rule) | Out-Null
+}
+```
+
+`RemoveAccessRule` вимоглива до точного співпадіння — треба передавати саме той об'єкт, який є в `$acl.Access`.
+
+**Простіша альтернатива — PurgeAccessRules:**
+```powershell
+$acl.PurgeAccessRules([System.Security.Principal.NTAccount]"BUILTIN\Users")
+```
+
+Прибирає ВСІ правила для вказаного акаунту, незалежно від деталей. Надійніше коли для одного акаунту є кілька записів з різними правами.
+
+### Перевірка результату
+
+```powershell
+(Get-Acl E:\Shares\Marketing).Access | Format-Table IdentityReference, FileSystemRights, AccessControlType
+```
