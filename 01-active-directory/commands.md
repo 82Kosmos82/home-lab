@@ -343,3 +343,65 @@ $acl.PurgeAccessRules([System.Security.Principal.NTAccount]"BUILTIN\Users")
 ```powershell
 (Get-Acl E:\Shares\Marketing).Access | Format-Table IdentityReference, FileSystemRights, AccessControlType
 ```
+
+## 2026-08-28 — робота з шарами 
+
+### New-SmbShare — створення SMB-шари
+
+Робить локальну папку доступною мережею через SMB-протокол.
+
+```powershell
+New-SmbShare -Name "Marketing" `
+             -Path "E:\Shares\Marketing" `
+             -FullAccess "Authenticated Users" `
+             -FolderEnumerationMode AccessBased `
+             -Description "Share for marketing"
+```
+
+**Ключові параметри:**
+
+- **`-Name`** — назва шари в UNC-шляху (`\\file01\Marketing`). Може відрізнятись від назви локальної папки.
+- **`-Path`** — повний шлях до локальної папки. Папка має існувати заздалегідь.
+- **`-FullAccess`** — хто має Full Control на share level. Best practice — `Authenticated Users` (виключає anonymous і Guest, на відміну від `Everyone`).
+- **`-ReadAccess`** / **`-ChangeAccess`** — альтернативні рівні прав. Не використовуємо, все обмежуємо через NTFS.
+- **`-FolderEnumerationMode`** — `AccessBased` вмикає Access-Based Enumeration (ABE). Ховає файли/папки всередині шари від юзерів, які не мають до них NTFS-доступу.
+- **`-Description`** — коментар до шари, видно у Server Manager.
+
+**Важливо про ABE:** приховує вміст **всередині** шари, але не саму назву шари від browsing-у `\\server\`. Це часте розчарування — юзер може бачити назву `Sales` у списку, але не зайти в неї.
+
+### Get-SmbShare — перегляд шар
+
+```powershell
+# Всі шари
+Get-SmbShare
+
+# Тільки наші шари
+Get-SmbShare | Where-Object Name -in "Marketing", "Sales", "Public" | Format-Table Name, Path, Description
+```
+
+Windows автоматично створює **адміністративні шари** (`ADMIN$`, `C$`, `IPC$`, `print$`) — не чіпаємо.
+
+### Get-SmbShareAccess — перегляд share permissions
+
+```powershell
+Get-SmbShareAccess -Name Marketing
+```
+Показує хто має Full/Change/Read на **share рівні** (не плутати з NTFS).
+
+### Grant-SmbShareAccess / Revoke-SmbShareAccess — зміна прав
+
+```powershell
+# Додати доступ
+Grant-SmbShareAccess -Name Sales -AccountName "LAB\Sales-Users" -AccessRight Full -Force
+
+# Прибрати доступ
+Revoke-SmbShareAccess -Name Sales -AccountName "Authenticated Users" -Force
+```
+
+`-Force` — без запиту підтвердження. Використовується коли треба обмежити per-share для повного приховання від інших груп.
+
+### Remove-SmbShare — видалення шари
+
+```powershell
+Remove-SmbShare -Name Marketing -Force
+```
