@@ -16,8 +16,8 @@
 | # | Етап | Статус | Ключові теми |
 |---|------|--------|--------------|
 | 0 | [Підготовка](00-preparation/) | ✅ зроблено | Hyper-V, Git, репозиторій |
-| 1 | [Active Directory](01-active-directory/) | 🟡 В роботі | AD DS, GPO, DNS, DHCP, PowerShell |
-| 2 | [Мережа](02-network/) | ⏳ Заплановано | OPNsense, VLAN, WireGuard, фільтрація |
+| 1 | [Active Directory](01-active-directory/) | ✅ зроблено | AD DS, GPO, DNS, DHCP, PowerShell |
+| 2 | [Мережа](02-network/) | 🟡 В роботі | OPNsense, VLAN, WireGuard, фільтрація |
 | 3 | [Linux + автоматизація](03-linux-automation/) | ⏳ Заплановано | Docker, Ansible |
 | 3.5 | [RDS / тонкі клієнти](03-5-rds-vdi/) | ⏳ Заплановано | RDS-ферма, VDI |
 | 4 | [Azure + гібридний AD](04-azure-hybrid/) | ⏳ Заплановано | Entra ID, AVD, AZ-104 |
