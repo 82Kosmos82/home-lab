@@ -24,8 +24,8 @@
 ## Виконано
 - [x] Створено VM OPNsense (2 GB RAM, 1 vCPU, 20 GB, Gen 1, 4 network adapters)
 - [x] Перейменовано Lab-Domain на Lab-Servers, створено Lab-Workstations і Lab-Guests
-- [ ] Встановлено OPNsense з ISO
-- [ ] Мережева конфігурація OPNsense (interfaces, IP, DHCP scopes, NAT)
+- [x] Встановлено OPNsense з ISO
+- [x] Мережева конфігурація OPNsense (interfaces, IP, DHCP scopes, NAT)
 - [ ] DHCP options 6, 15 і reservations для напівстатичних пристроїв
 - [ ] Split-horizon DNS (lab.internal → DC01, інше → зовнішні DNS)
 - [ ] Firewall rules між сегментами (default deny + explicit allow)
@@ -42,8 +42,8 @@
 |------|-------------|
 | `scripts/New-OPNsense.ps1` | Створення VM OPNsense |
 | `scripts/New-LabSwitches.ps1` | Створення нових свічів для лаби |
-
-
-
+| `opnsense_interfaces.png` | дав айпішки віртуальним свічам |
+| `opnsense_before_setup.png` | opnsense в базовій конфігурації до налаштування |
+| `opnsense_web.png` | веб морда opnsense відкрита з DC01|
 ## Що далі
 Перехід до Етапу 3 — Linux, Docker, автоматизація через Ansible.
