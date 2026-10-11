@@ -59,6 +59,8 @@
 | `guests_to_web_rule.png` | випускаємо гостів в веб|
 | `guests_rules.png` | правила гостьової підмережі|
 | `win11-01_to_dhcp.ps1` | правила гостьової підмережі|
-
+| `unbound_youtube_block.png` | правило для блоку ютуб через анбаунд|
+| `youtube_blocking_screen.png` | як виглядає блок ютуба після блоку через анбаунд|
+| `External_Dns_block.png` | не даємо обходити наш внутрішній днс|
 ## Що далі
 Перехід до Етапу 3 — Linux, Docker, автоматизація через Ansible.
