@@ -27,7 +27,7 @@
 - [x] Встановлено OPNsense з ISO
 - [x] Мережева конфігурація OPNsense (interfaces, IP, DHCP scopes, NAT)
 - [ ] DHCP options 6, 15 і reservations для напівстатичних пристроїв
-- [ ] Split-horizon DNS (lab.internal → DC01, інше → зовнішні DNS)
+- [x] Split-horizon DNS (lab.internal → DC01, інше → зовнішні DNS)
 - [x] Firewall rules між сегментами (default deny + explicit allow)
 - [x] Переведено WIN11-01 у сегмент Workstations
 - [ ] WireGuard VPN для віддаленого доступу до лабораторії
@@ -64,5 +64,9 @@
 | `External_Dns_block.png` | не даємо обходити наш внутрішній днс|
 | `scheldue_test.png` | створення розкладу для правила фаєрвола|
 | `gpo_for_edge_dns_restriction.png` | творимо політику аби в еджі не можна було міняти днс|
+| `allowing_53_in_lan.png` | дозволяємо ходити на 53 порт в лані|
+| `blocking_53_to_non_lan.png` | забороняємо ходити на 53 порт поза межами лану|
+| `allowing_lan_to_web.png` | випускаємо лан в інтернет окрім виділених мереж|
+| `lan_rules.png` | правила для лан|
 ## Що далі
 Перехід до Етапу 3 — Linux, Docker, автоматизація через Ansible.
