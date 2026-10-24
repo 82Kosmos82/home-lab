@@ -26,7 +26,7 @@
 - [x] Перейменовано Lab-Domain на Lab-Servers, створено Lab-Workstations і Lab-Guests
 - [x] Встановлено OPNsense з ISO
 - [x] Мережева конфігурація OPNsense (interfaces, IP, DHCP scopes, NAT)
-- [ ] DHCP options 6, 15 і reservations для напівстатичних пристроїв
+- [x] DHCP options 6, 15 і reservations для напівстатичних пристроїв
 - [x] Split-horizon DNS (lab.internal → DC01, інше → зовнішні DNS)
 - [x] Firewall rules між сегментами (default deny + explicit allow)
 - [x] Переведено WIN11-01 у сегмент Workstations
@@ -68,5 +68,14 @@
 | `blocking_53_to_non_lan.png` | забороняємо ходити на 53 порт поза межами лану|
 | `allowing_lan_to_web.png` | випускаємо лан в інтернет окрім виділених мереж|
 | `lan_rules.png` | правила для лан|
+| `RPC_alias.png` | RPC аліас|
+| `DC_alias.png` | аліас з контроллерами домену|
+| `opt1_allowing_rpc_to_dc.png` | правило аби можна було ходити на rpc порти контроллерів домену з воркстанцій|
+| `dhcp_option6_opt1.png` | dhcp опція 6 для інтерфейсу opt1|
+| `dhcp_option15_opt1.png` | dhcp опція 15 для інтерфейсу opt1|
+| `static_ip_for_admin_workstation.png` | даємо статисну айпі воркстанції через прив'язку до мак адреси|
+| `allowing_admin_workstations_to_firewall.png` | дозволив нашій машині зі статичний айпі ходити в фаєрвол|
+
+
 ## Що далі
 Перехід до Етапу 3 — Linux, Docker, автоматизація через Ansible.
