@@ -76,6 +76,10 @@
 | `static_ip_for_admin_workstation.png` | даємо статисну айпі воркстанції через прив'язку до мак адреси|
 | `allowing_admin_workstations_to_firewall.png` | дозволив нашій машині зі статичний айпі ходити в фаєрвол|
 | `blocking_guests_from_lab.png` | заборона гостям ходити до lab.internal|
+| `wg_opnsense.png` | робимо налаштування wg на opnsense|
+| `wg_peer.png` | додаємо перший пір в wg|
+| `allowing_wg_on_wan.png` | правило на wan аби трафік по порту wg не пішов в дефолт денай|
+| `vpn_rules.png` | правила інтерфейсу vpn|
 
 ## Що далі
 Перехід до Етапу 3 — Linux, Docker, автоматизація через Ansible.
