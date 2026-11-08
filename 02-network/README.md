@@ -30,7 +30,7 @@
 - [x] Split-horizon DNS (lab.internal → DC01, інше → зовнішні DNS)
 - [x] Firewall rules між сегментами (default deny + explicit allow)
 - [x] Переведено WIN11-01 у сегмент Workstations
-- [ ] WireGuard VPN для віддаленого доступу до лабораторії
+- [x] WireGuard VPN для віддаленого доступу до лабораторії
 - [ ] Site-to-site VPN до Hetzner VPS
 - [ ] AD CS (Active Directory Certificate Services) для WireGuard з сертифікатами
 - [ ] Windows Server як network controller (DHCP роль замість OPNsense, IPAM)
