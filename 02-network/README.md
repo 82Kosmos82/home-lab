@@ -31,8 +31,8 @@
 - [x] Firewall rules між сегментами (default deny + explicit allow)
 - [x] Переведено WIN11-01 у сегмент Workstations
 - [x] WireGuard VPN для віддаленого доступу до лабораторії
-- [ ] Site-to-site VPN до Hetzner VPS
-- [ ] AD CS (Active Directory Certificate Services) для WireGuard з сертифікатами
+- [x] Site-to-site VPN до Hetzner VPS
+- [ ] AD CS: внутрішній центр сертифікації
 - [ ] Windows Server як network controller (DHCP роль замість OPNsense, IPAM)
 - [ ] Глибший DNS (DNSSEC, DNS over HTTPS/TLS, ad-blocking)
 - [ ] IDS/IPS через Suricata на OPNsense
