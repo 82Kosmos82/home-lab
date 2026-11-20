@@ -34,7 +34,7 @@
 - [x] Site-to-site VPN до Hetzner VPS
 - [ ] AD CS: внутрішній центр сертифікації
 - [ ] Windows Server як network controller (DHCP роль замість OPNsense, IPAM)
-- [ ] Глибший DNS (DNSSEC, DNS over HTTPS/TLS, ad-blocking)
+- [x] Глибший DNS (DNSSEC, DNS over HTTPS/TLS, ad-blocking)
 - [ ] IDS/IPS через Suricata на OPNsense
 
 ## Артефакти
@@ -80,6 +80,13 @@
 | `wg_peer.png` | додаємо перший пір в wg|
 | `allowing_wg_on_wan.png` | правило на wan аби трафік по порту wg не пішов в дефолт денай|
 | `vpn_rules.png` | правила інтерфейсу vpn|
+| `dnnsec_allowng.png` | вмикаємо dnssec в unbound|
+| `PTR_test.png` | тестуємо чи працює ptr на win11-01|
+| `PTR_domain.png` | робимо зворотні зони для адрес,аби бачили доменні |
+| `PTR_opnsense.png` | робимо зворотні зони для адрес, аби бачив opnsense|
+| `PTR_unbound.png` | пересилаємо запити з зворотніх зон на dc01|
+| `dns_over_tls_enabling.png` | вмикаємо dns over tls|
+| `dnnsec_insecure_domain.png` | робимо виключення щодо нашого домену для перевірки по dnssec|
 
 ## Що далі
 Перехід до Етапу 3 — Linux, Docker, автоматизація через Ansible.
