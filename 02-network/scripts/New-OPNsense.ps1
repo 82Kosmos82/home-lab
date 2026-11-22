@@ -21,7 +21,7 @@ New-VM -Name $VMName `
 Remove-VMNetworkAdapter -VMName $VMName
 foreach($c in $counter)
 {
-    Add-VMNetworkAdapter -VMName $VMName -SwitchName $switch[$c] -IsLegacy $true -Name $switchname[$c]
+    Add-VMNetworkAdapter -VMName $VMName -SwitchName $switch[$c]  -Name $switchname[$c]
 }     
 # === CPU ===
 Set-VMProcessor -VMName $VMName -Count $VMCpu

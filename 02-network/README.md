@@ -87,6 +87,8 @@
 | `PTR_unbound.png` | пересилаємо запити з зворотніх зон на dc01|
 | `dns_over_tls_enabling.png` | вмикаємо dns over tls|
 | `dnnsec_insecure_domain.png` | робимо виключення щодо нашого домену для перевірки по dnssec|
+| `New-CA01.ps1` | Створення VM CA01 |
+| `CA_role_setup.ps1` | сетап ролі і базове її налаштування для CA|
 
 ## Що далі
 Перехід до Етапу 3 — Linux, Docker, автоматизація через Ansible.
