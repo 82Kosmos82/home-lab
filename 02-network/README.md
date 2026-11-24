@@ -32,9 +32,9 @@
 - [x] Переведено WIN11-01 у сегмент Workstations
 - [x] WireGuard VPN для віддаленого доступу до лабораторії
 - [x] Site-to-site VPN до Hetzner VPS
-- [ ] AD CS: внутрішній центр сертифікації
+- [x] AD CS: внутрішній центр сертифікації
 - [ ] Windows Server як network controller (DHCP роль замість OPNsense, IPAM)
-- [x] Глибший DNS (DNSSEC, DNS over HTTPS/TLS, ad-blocking)
+- [x] DNSSEC, DNS over HTTPS/TLS, ad-blocking
 - [ ] IDS/IPS через Suricata на OPNsense
 
 ## Артефакти
@@ -89,6 +89,7 @@
 | `dnnsec_insecure_domain.png` | робимо виключення щодо нашого домену для перевірки по dnssec|
 | `New-CA01.ps1` | Створення VM CA01 |
 | `CA_role_setup.ps1` | сетап ролі і базове її налаштування для CA|
+| `opnsense_cert_request.png` | робимо публічний ключ для реквеста на сертифікат|
 
 ## Що далі
 Перехід до Етапу 3 — Linux, Docker, автоматизація через Ansible.

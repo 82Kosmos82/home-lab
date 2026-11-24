@@ -30,3 +30,12 @@ Add-DnsServerResourceRecordPtr -ZoneName "50.16.172.in-addr.arpa" -Name "1" -Ptr
 ```
 -Name "1" — останній октет адреси: 172.16.50.1 і 172.16.60.1
 
+## 2026-11-24 — додаємо dns запис для opnsense в межах нашого домену
+```powershell
+Add-DnsServerResourceRecordA -ZoneName "lab.internal" -Name "opnsense" -IPv4Address "172.16.60.1"
+```
+
+## 2026-11-24 — видаємо сертифікат опнсенсу по його публічному ключу
+```powershell
+certreq -submit -attrib "CertificateTemplate:WebServer" -config "CA01.lab.internal\LAB-CA" C:\Users\Administrator.LAB\Desktop\opnsense.req.txt C:\Users\Administrator.LAB\Desktop\opnsense.cer
+```
